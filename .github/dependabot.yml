@@ -9,3 +9,32 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
+name: Build and Deploy
+
+on:
+  schedule:
+    # Run at 4:00 PM every day
+    - cron: '0 16 * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    # Add your build steps here
+    - name: Build
+      run: |
+        echo "Building the project..."
+
+    - name: Wait for 6 hours
+      run: |
+        echo "Waiting for 6 hours..."
+        sleep 21600  # 6 hours in seconds
+
+    # Add your deploy steps here
+    - name: Deploy
+      run: |
+        echo "Deploying the project..."
